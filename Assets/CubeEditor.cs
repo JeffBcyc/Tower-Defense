@@ -7,7 +7,7 @@ using UnityEngine.SocialPlatforms;
 public class CubeEditor : MonoBehaviour
 {
 
-    [Range (1f, 20f)][SerializeField] int gridSize = 10;
+    [Range (1f, 20f)][SerializeField] int gridSize = 6;
 
     TextMesh _cubePosition;
 
@@ -21,9 +21,12 @@ public class CubeEditor : MonoBehaviour
         snapPos.z = Mathf.Round(transform.position.z / gridSize) * gridSize;
         transform.position = new Vector3(snapPos.x, 0f, snapPos.z);
 
+        string _textLabel = snapPos.x / gridSize + "," + snapPos.z / gridSize;
+        // test
         _cubePosition = GetComponentInChildren<TextMesh>();
-        _cubePosition.text = snapPos.x / gridSize + "," + snapPos.z /gridSize;
+        _cubePosition.text = _textLabel;
 
+        gameObject.name = _textLabel;
 
     }
 }
