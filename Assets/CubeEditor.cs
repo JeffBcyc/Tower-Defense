@@ -7,7 +7,7 @@ using UnityEngine.SocialPlatforms;
 public class CubeEditor : MonoBehaviour
 {
 
-    [Range (1f, 20f)][SerializeField] float gridSize = 10f;
+    [Range (1f, 20f)][SerializeField] int gridSize = 10;
 
     TextMesh _cubePosition;
 
@@ -22,7 +22,7 @@ public class CubeEditor : MonoBehaviour
         transform.position = new Vector3(snapPos.x, 0f, snapPos.z);
 
         _cubePosition = GetComponentInChildren<TextMesh>();
-        _cubePosition.text = snapPos.x + " , " + snapPos.z;
+        _cubePosition.text = snapPos.x / gridSize + "," + snapPos.z /gridSize;
 
 
     }
