@@ -9,9 +9,11 @@ using UnityEngine.SocialPlatforms;
 public class CubeEditor : MonoBehaviour
 {
 
+    Waypoint waypointLocation;
+
     private void Awake()
     {
-        Waypoint waypoint = GetComponent<Waypoint>();    
+        waypointLocation = GetComponent<Waypoint>();    
     }
     
 
@@ -25,18 +27,19 @@ public class CubeEditor : MonoBehaviour
 
     private void UpdatePos()
     {
-        Vector3Int newCubePos = new Vector3Int(
-            newCubePos.x = W   
-
-
+        Vector3 x = new Vector3(
+            waypointLocation.gridPos().x,
+            0,
+            waypointLocation.gridPos().y
             );
+        waypointLocation.transform.position = x;
+        
     }
 
     private void UpdateLabel()
     {
-        string _textLabel = snapPos.x / gridSize + "," + snapPos.z / gridSize;
-        TextMesh _cubePosition = _cubePosition = GetComponentInChildren<TextMesh>();
-        _cubePosition.text = _textLabel;
-        gameObject.name = _textLabel;
+        TextMesh _cubePosition = GetComponentInChildren<TextMesh>();
+        _cubePosition.text = waypointLocation.gridText();
+        gameObject.name = waypointLocation.gridText();
     }
 }
