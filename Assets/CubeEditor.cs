@@ -4,30 +4,39 @@ using UnityEngine;
 using UnityEngine.SocialPlatforms;
 
 [ExecuteInEditMode]
+[SelectionBase]
+[RequireComponent(typeof(Waypoint))]
 public class CubeEditor : MonoBehaviour
 {
 
-    [Range (1f, 20f)][SerializeField] int gridSize = 6;
-
-    TextMesh _cubePosition;
+    private void Awake()
+    {
+        Waypoint waypoint = GetComponent<Waypoint>();    
+    }
+    
 
 
     // Update is called once per frame
     void Update()
     {
+        UpdatePos();
+        UpdateLabel();
+    }
 
-        Vector3 snapPos;
-        snapPos.x = Mathf.Round(transform.position.x / gridSize) * gridSize;
-        snapPos.z = Mathf.Round(transform.position.z / gridSize) * gridSize;
-        transform.position = new Vector3(snapPos.x, 0f, snapPos.z);
+    private void UpdatePos()
+    {
+        Vector3Int newCubePos = new Vector3Int(
+            newCubePos.x = W   
 
+
+            );
+    }
+
+    private void UpdateLabel()
+    {
         string _textLabel = snapPos.x / gridSize + "," + snapPos.z / gridSize;
-        // change b
-
-        _cubePosition = GetComponentInChildren<TextMesh>();
+        TextMesh _cubePosition = _cubePosition = GetComponentInChildren<TextMesh>();
         _cubePosition.text = _textLabel;
-
         gameObject.name = _textLabel;
-
     }
 }
