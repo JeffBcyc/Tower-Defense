@@ -8,6 +8,15 @@ public class Waypoint : MonoBehaviour
     public bool isExplored = false;
     const int gridSize = 10;
     string textLabel;
+    public Waypoint searchedFrom;
+
+    private void Update()
+    {
+        if (isExplored && (! (searchedFrom == null)))
+        {
+            SetWaypointColor(Color.blue);
+        }
+    }
 
     public Vector2Int gridPos()
     {

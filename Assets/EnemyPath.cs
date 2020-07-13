@@ -6,23 +6,24 @@ using UnityEngine;
 public class EnemyPath : MonoBehaviour
 {
 
-    [SerializeField] List<Waypoint> path;
-    //[SerializeField] Pathfinder worldToExplore;
+    List<Waypoint> travel = new List<Waypoint>();
 
     // Start is called before the first frame update
     void Start()
     {
+        Pathfinder pathfinder = FindObjectOfType<Pathfinder>();
+        travel = pathfinder.GetPath();
         StartCoroutine(EnemyPatrolPath());
         // the execution will revist there after the code meets yield return new ...
         // it comes back here to execute next line
         // when the rest execution continues for 0.5 seconds it goes back to EnemyPatrolPath Method.
-        print("Back at start");
+        //print("Back at start");
     }
 
     IEnumerator EnemyPatrolPath()
     {
         print("Start Coroutine");
-        foreach (Waypoint waypoint in path)
+        foreach (Waypoint waypoint in travel)
         {
             
             transform.position = waypoint.transform.position;
@@ -31,7 +32,7 @@ public class EnemyPath : MonoBehaviour
             // ode will stop executing after the first round here
             // then it goes back to the start method to execute whats left
             // after 0.5 seconds it comes back here after 0.5seconds to continue
-        }
+        } 
 
         print("End Coroutine");
     }
