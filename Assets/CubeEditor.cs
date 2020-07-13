@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
@@ -28,9 +29,9 @@ public class CubeEditor : MonoBehaviour
     private void UpdatePos()
     {
         Vector3 x = new Vector3(
-            waypointLocation.gridPos().x,
+            waypointLocation.gridPos().x * waypointLocation.gridScale(),
             0,
-            waypointLocation.gridPos().y
+            waypointLocation.gridPos().y * waypointLocation.gridScale()
             );
         waypointLocation.transform.position = x;
         

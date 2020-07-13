@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class EnemyPath : MonoBehaviour
 {
 
     [SerializeField] List<Waypoint> path;
+    //[SerializeField] Pathfinder worldToExplore;
 
     // Start is called before the first frame update
     void Start()
