@@ -10,13 +10,13 @@ public class Waypoint : MonoBehaviour
     string textLabel;
     public Waypoint searchedFrom;
 
-    private void Update()
-    {
-        if (isExplored && (! (searchedFrom == null)))
-        {
-            SetWaypointColor(Color.blue);
-        }
-    }
+    //private void Update()
+    //{
+    //    if (isExplored && (! (searchedFrom == null)))
+    //    {
+    //        SetWaypointColor(Color.blue);
+    //    }
+    //}
 
     public Vector2Int gridPos()
     {
@@ -39,10 +39,10 @@ public class Waypoint : MonoBehaviour
     }
 
 
-    public void SetWaypointColor(Color color)
-    {
-        MeshRenderer waypointMesh = transform.Find("Top").GetComponent<MeshRenderer>();
-        waypointMesh.material.color = color;
-    }
+    //public void SetWaypointColor(Color color)
+    //{
+    //    MeshRenderer waypointMesh = transform.Find("Top").GetComponent<MeshRenderer>();
+    //    //waypointMesh.material.color = color;
+    //}
 
 }

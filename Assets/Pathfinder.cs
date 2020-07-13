@@ -32,7 +32,6 @@ public class Pathfinder : MonoBehaviour
     public List<Waypoint> GetPath()
     {
         LoadWaypoints();
-        UpdateWaypingColor();
         Pathfind();
         CreatePath();
         return path;
@@ -58,7 +57,6 @@ public class Pathfinder : MonoBehaviour
         while (que.Count > 0 && isRunning)
         {
             searchCentre = que.Dequeue();
-            print("Searching for " + searchCentre);
             HalfIfEndFound();
             ExploreNeighbour();
         }
@@ -69,9 +67,7 @@ public class Pathfinder : MonoBehaviour
     {
         if (searchCentre == endWayping)
         {
-            print("Found!");
             endWayping.isExplored = false;
-            searchCentre.SetWaypointColor(Color.green);
             isRunning = false;
 
         }
@@ -89,7 +85,6 @@ public class Pathfinder : MonoBehaviour
                 if (!grid[gridToExplore].isExplored )//|| path.Contains(grid[gridToExplore]))
                 {
                     que.Enqueue(grid[gridToExplore]);
-                    print(grid[gridToExplore] + " added to Queue");
                     grid[gridToExplore].isExplored = true;
                     grid[gridToExplore].searchedFrom = searchCentre;
                 }
@@ -112,24 +107,11 @@ public class Pathfinder : MonoBehaviour
             } else
             {
                 grid.Add(wayping.gridPos(), wayping);
-                wayping.SetWaypointColor(Color.black);
             }
         }
 
-        print(grid.Count + " waypoints loaded");
 
     }
-
-
-
-
-    private void UpdateWaypingColor()
-    {
-        startWayping.SetWaypointColor(Color.white);
-        startWayping.isExplored = true;
-        endWayping.SetWaypointColor(Color.white);
-    }
-
 
 
 }

@@ -40,7 +40,9 @@ public class CubeEditor : MonoBehaviour
     private void UpdateLabel()
     {
         TextMesh _cubePosition = GetComponentInChildren<TextMesh>();
-        _cubePosition.text = waypointLocation.gridText();
+        string a;
+        a = waypointLocation.gridText();
+        _cubePosition.text = a;
         gameObject.name = waypointLocation.gridText();
     }
 }
