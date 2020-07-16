@@ -10,16 +10,8 @@ public class Waypoint : MonoBehaviour
     string textLabel;
     public Waypoint searchedFrom;
     public bool isPlacable = true;
-    [SerializeField] Tower tower = null;
+    //[SerializeField] Tower tower = null;
     [SerializeField] GameObject towerParent;
-
-    //private void Update()
-    //{
-    //    if (isExplored && (! (searchedFrom == null)))
-    //    {
-    //        SetWaypointColor(Color.blue);
-    //    }
-    //}
 
     public Vector2Int gridPos()
     {
@@ -42,30 +34,15 @@ public class Waypoint : MonoBehaviour
     }
 
 
-    //public void SetWaypointColor(Color color)
-    //{
-    //    MeshRenderer waypointMesh = transform.Find("Top").GetComponent<MeshRenderer>();
-    //    //waypointMesh.material.color = color;
-    //}
-
-
     private void OnMouseDown()
     {
         if (isPlacable)
         {
-            PlaceATower(gameObject.transform);
-
+            FindObjectOfType<TowerFactory>().BuiltATower(this);
         } else
         {
             print("cant place here!");
         }
-    }
-
-    void PlaceATower(Transform cube)
-    {
-        Tower newTower = Instantiate(tower, transform.position + new Vector3(0,10f,0), Quaternion.identity);
-        newTower.transform.parent = towerParent.transform;
-        isPlacable = false;
     }
 
 }

@@ -14,6 +14,8 @@ public class Tower : MonoBehaviour
     [SerializeField] float fireRange = 10f;
     Vector3 adjustedHeight = new Vector3(0, 10, 0);
 
+    public Waypoint baseWaypoint;
+
     private void Awake()
     {
         bullets = transform.GetComponentInChildren<ParticleSystem>();
@@ -87,4 +89,5 @@ public class Tower : MonoBehaviour
     {
         objectToPan.LookAt(targetToLook);
     }
+
 }

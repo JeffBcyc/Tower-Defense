@@ -14,16 +14,14 @@ public class Enemy : MonoBehaviour
     [SerializeField] int EnemyHP = 50;
     [SerializeField] ParticleSystem dmgParticle;
     [SerializeField] ParticleSystem deathFX;
+    [SerializeField] EnemySpawner enemySpawner;
 
-    // Start is called before the first frame update
     void Start()
     {
         Pathfinder pathfinder = FindObjectOfType<Pathfinder>();
+        enemySpawner = FindObjectOfType<EnemySpawner>();
         travel = pathfinder.GetPath();
         StartCoroutine(EnemyPatrolPath());
-        // the execution will revist there after the code meets yield return new ...
-        // it comes back here to execute next line
-        // when the rest execution continues for 0.5 seconds it goes back to EnemyPatrolPath Method.
     }
 
     IEnumerator EnemyPatrolPath()
@@ -32,18 +30,10 @@ public class Enemy : MonoBehaviour
         {
             transform.position = waypoint.transform.position + new Vector3(0,10,0);
             yield return new WaitForSeconds(0.5f);
-            // mode will stop executing after the first round here
-            // then it goes back to the start method to execute whats left
-            // after 0.5 seconds it comes back here after 0.5seconds to continue
-        } 
-
+        }
+        SelfDestruction();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     private void OnParticleCollision(GameObject other)
     {
@@ -51,13 +41,19 @@ public class Enemy : MonoBehaviour
         dmgParticle.Play();
         createDamageText(damageTaken);
         EnemyHP -= damageTaken;
-        if (EnemyHP < 0) 
+        if (EnemyHP < 0)
         {
-            ParticleSystem vfx = Instantiate(deathFX, transform.position, Quaternion.identity);
-            vfx.Play();
-            Destroy(gameObject);
+            SelfDestruction();
         }
 
+    }
+
+    private void SelfDestruction()
+    {
+        ParticleSystem vfx = Instantiate(deathFX, transform.position, Quaternion.identity);
+        vfx.Play();
+        Destroy(gameObject);
+        enemySpawner.enemyCount -= 1;
     }
 
     private void createDamageText(int damage)
