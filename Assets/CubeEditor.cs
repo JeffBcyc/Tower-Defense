@@ -9,11 +9,14 @@ using UnityEngine.SocialPlatforms;
 public class CubeEditor : MonoBehaviour
 {
 
-    Waypoint waypointLocation;
+    Waypoint _waypointLocation;
 
     private void Awake()
     {
+        UpdateLabel();
         waypointLocation = GetComponent<Waypoint>();    
+        print("I'm using visual studio code, valla");
+        print("this editor is basically telling me my code is shit");
     }
     
 
@@ -22,8 +25,8 @@ public class CubeEditor : MonoBehaviour
     void Update()
     {
         UpdatePos();
-        UpdateLabel();
     }
+
 
     private void UpdatePos()
     {

@@ -16,7 +16,8 @@ public class EnemyPath : MonoBehaviour
         // when the rest execution continues for 0.5 seconds it goes back to EnemyPatrolPath Method.
         print("Back at start");
     }
-
+    
+    
     IEnumerator EnemyPatrolPath()
     {
         print("Start Coroutine");
